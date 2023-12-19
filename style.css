@@ -49,17 +49,22 @@ button{
     border-radius:5%;
     border-color: brown;
     width: 100%;
-    aspect-ratio: 2/2;
+    aspect-ratio: 1/1;
+}
+
+.status,
+.info{
+    display: flex;
 }
 
 .status{
-    display: flex;
+   
     justify-content:space-around;
-   margin-bottom: 15px;
+    margin-bottom: 15px;
 }
+
 .info
 {
-    display: flex;
     flex-direction: column;
     text-align: center;
 }
@@ -67,6 +72,7 @@ button{
 .info label{
     font-size: 11px;
 }
+
 .info span{
     font-size: 23px;
 }
