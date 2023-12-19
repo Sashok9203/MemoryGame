@@ -1,4 +1,44 @@
+class Tile
+{
+    twinId;
+    #closed;
+    #defaultImage = "image/brick.jpg";
+    #imageSrc;
+    constructor(image,id)
+    {
+        this.image = image;
+        this.#closed = false;
+        this.#imageSrc = this.image.src;
+        this.id = id;
+    }
 
+    enableEvent(enable)
+    {
+        if(enable && this.#closed)
+             this.image.onclick = userClick;
+        else if(!enable && this.#closed)
+              this.image.onclick = null;
+    }
+
+    set closed(value){
+        if(value !== this.#closed)
+        {
+           this.#closed = value;
+           if(this.#closed)
+           {
+              this.image.src = this.#defaultImage;
+              this.image.onclick = userClick;
+           }
+        else{
+              this.image.src =  this.#imageSrc;
+              this.image.onclick = null;
+           }
+          
+        }
+    }
+    get closed(){return this.#closed;}
+
+}
 
 const grid = document.getElementById(`grid`);
 const time = document.getElementById(`time`);
@@ -103,48 +143,6 @@ function enableEvents(value)
     tileList.forEach((item)=>{
         item.enableEvent(value);
     });
-}
-
-class Tile
-{
-    twinId;
-    #closed;
-    #defaultImage = "image/brick.jpg";
-    #imageSrc;
-    constructor(image,id)
-    {
-        this.image = image;
-        this.#closed = false;
-        this.#imageSrc = this.image.src;
-        this.id = id;
-    }
-
-    enableEvent(enable)
-    {
-        if(enable && this.#closed)
-             this.image.onclick = userClick;
-        else if(!enable && this.#closed)
-              this.image.onclick = null;
-    }
-
-    set closed(value){
-        if(value !== this.#closed)
-        {
-           this.#closed = value;
-           if(this.#closed)
-           {
-              this.image.src = this.#defaultImage;
-              this.image.onclick = userClick;
-           }
-        else{
-              this.image.src =  this.#imageSrc;
-              this.image.onclick = null;
-           }
-          
-        }
-    }
-    get closed(){return this.#closed;}
-
 }
 
 function  setTime(value)
