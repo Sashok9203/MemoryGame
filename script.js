@@ -19,7 +19,7 @@ function clearStat()
 {
     missesSet(0);
     timer = 120;
-    time.innerText = `${parseInt(timer/60)} : ${parseInt(timer%60)}`
+    setTime(timer);
 }
 
 function missesSet(value)
@@ -147,6 +147,13 @@ class Tile
 
 }
 
+function  setTime(value)
+{
+    let sec = parseInt(value % 60);
+    if(sec < 10) sec = `0${sec}`;
+    time.innerText = `${parseInt(value/60)}:${sec}`;
+}
+
 function gameStart()
 {
     restart_button.innerHTML = '';
@@ -160,7 +167,7 @@ function gameStart()
         hideAll(true);
         tTime = setInterval(()=>{
         timer--;
-        time.innerText = `${parseInt(timer/60)} : ${parseInt(timer%60)}`;
+        setTime(timer);
         if(timer === 0)
               gameStop();
         },1000);
